@@ -11,9 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-
-=======
     "apollo-server-express": "^3.6.2",
     "bcrypt": "^5.0.0",
     "express": "^4.17.1",
@@ -23,6 +20,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
->>>>>>> 6a30c6489766c8881409d63f01c90bbc04187fe7
   }
 }
