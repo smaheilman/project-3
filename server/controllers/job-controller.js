@@ -1,34 +1,34 @@
 const res = require('express/lib/response');
-const {User, Job, Comment} = require('../models');
+const { User, Job, Comment } = require('../models');
 
-module.exports = {
+const jobController = {
     getAllJobs(req, res) {
         Job.find({})
             .populate({
                 path: 'jobs',
                 include: [
                     {
-                    path: 'comments',
-                    model : 'Comment'
+                        path: 'comments',
+                        model: 'Comment'
                     }
                 ]
             })
-            .sort({createdAt: -1})
+            .sort({ createdAt: -1 })
             .then(dbJobData => res.json(dbJobData))
             .catch(err => {
                 console.log(err);
                 res.status(400).json(err);
             })
     },
-    
+
     getJobById({ params }, res) {
         Job.findOne({ _id: params.jobId })
             .populate({
                 path: 'job',
                 include: [
                     {
-                    path: 'comments',
-                    model : 'Comment'
+                        path: 'comments',
+                        model: 'Comment'
                     }
                 ]
             })
@@ -46,10 +46,24 @@ module.exports = {
             });
     },
 
-    createJob(req, res) {
-        Job.create(req.body)
-            .then(dbJobData => res.json(dbJobData))
-            .catch(err => res.status(400).json(err));
+    createJob({ params, body }, res) {
+        Job.create(body)
+            .then(({ _id }) => {
+                return User.findOneAndUpdate(
+                    { _id: params.userId },
+                    { $push: { postedJobs: _id } },
+                    { new: true }
+                )
+            })
+            .then(dbJobData => {
+                if (!dbJobData) {
+                    return res.status(404).json({ message: 'No Job found with this id' });
+                }
+                res.json(dbJobData);
+            })
+            .catch(err => {
+                res.status(400).json(err)
+            })
     },
 
     updateJob({ params, body }, res) {
@@ -69,7 +83,7 @@ module.exports = {
         Thought.findOneAndUpdate(
             { _id: params.jobId },
             { $push: { bid: body } },
-            { new: true, runValidators:true }
+            { new: true, runValidators: true }
         )
             .then(dbJobData => {
                 if (!dbJobData) {
@@ -86,7 +100,7 @@ module.exports = {
         Thought.findOneAndUpdate(
             { _id: params.jobId },
             { $push: { comments: body } },
-            { new: true, runValidators:true }
+            { new: true, runValidators: true }
         )
             .then(dbJobData => {
                 if (!dbJobData) {
@@ -112,4 +126,6 @@ module.exports = {
     },
 
 }
+
+module.exports = jobController;
 
