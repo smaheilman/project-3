@@ -3,7 +3,7 @@ const { User, Job, Comment } = require('../models');
 
 const jobController = {
     getAllJobs(req, res) {
-        Job.find({})
+        Job.findAll({})
             .populate({
                 path: 'jobs',
             })
@@ -85,7 +85,7 @@ const jobController = {
 
     //add comments
     addComment({ params, body }, res) {
-        Thought.findOneAndUpdate(
+        Job.findOneAndUpdate(
             { _id: params.jobId },
             { $push: { comments: body } },
             { new: true, runValidators: true }
@@ -98,6 +98,14 @@ const jobController = {
                 res.json(dbJobData);
             })
             .catch(err => res.json(err));
+    },
+
+    updateComment({params,body}, res) {
+        Job.findOneAndUpdate(
+            { _id: params.jobId },
+            { $push: { comments: body } },
+            { new: true, runValidators: true }
+        )
     },
 
     //check associations
@@ -122,6 +130,17 @@ const jobController = {
             .then(dbJobData => res.json(dbJobData))
             .catch(err => res.json(err));
     }, 
+
+    updateComment({ params }, res) {
+        Job.findOneAndUpdate(
+            { _id: params.jobId },
+            { $pull: { comment: { commentId: params.commentId } } },
+            { new: true }
+        )
+            .then(dbJobData => res.json(dbJobData))
+            .catch(err => res.json(err));
+    }, 
+
 
     removeBid({ params }, res) {
         Job.findOneAndUpdate(
