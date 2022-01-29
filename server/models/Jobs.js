@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 const bidSchema = require('./Bids');
+const commentSchema = require('./Comments');
 
 const jobSchema = new Schema(
     {
@@ -26,7 +27,7 @@ const jobSchema = new Schema(
                 default: Date.now,
                 get: (createdAtVal) => dateFormat(createdAtVal)
         },
-        comments: [CommentSchema]
+        comments: [commentSchema]
     },
     {
         toJSON: {
