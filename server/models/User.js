@@ -19,7 +19,19 @@ const userSchema = new Schema(
             type: String,
             required: true
         },
-        // potentially more
+        // job array referencing the job model
+        postedJobs: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Job'
+            }
+        ],
+        savedJobs: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Job'
+            }
+        ]
     },
     {
         toJSON: {
@@ -41,6 +53,14 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function(password) {
     return bcrypt.compare(password, this.password)
 }
+// virtual to get the total count of jobs a user has posted
+userSchema.virtual('postedJobCount').get(function() {
+    return this.postedJobs.length;
+})
+// virtual to get the number of jobs a user has saved, or bid, on
+userSchema.virtual('savedJobCount').get(function() {
+    return this.savedJobs.length;
+})
 
 const User = model('User', userSchema);
 
