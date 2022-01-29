@@ -6,12 +6,6 @@ const jobController = {
         Job.find({})
             .populate({
                 path: 'jobs',
-                include: [
-                    {
-                        path: 'comments',
-                        model: 'Comment'
-                    }
-                ]
             })
             .sort({ createdAt: -1 })
             .then(dbJobData => res.json(dbJobData))
@@ -25,12 +19,6 @@ const jobController = {
         Job.findOne({ _id: params.jobId })
             .populate({
                 path: 'job',
-                include: [
-                    {
-                        path: 'comments',
-                        model: 'Comment'
-                    }
-                ]
             })
             .then(dbJobData => {
                 //if no Job found
@@ -124,6 +112,28 @@ const jobController = {
             })
             .catch(err => res.status(400).json(err));
     },
+
+    removeComment({ params }, res) {
+        Job.findOneAndUpdate(
+            { _id: params.jobId },
+            { $pull: { comment: { commentId: params.commentId } } },
+            { new: true }
+        )
+            .then(dbJobData => res.json(dbJobData))
+            .catch(err => res.json(err));
+    }, 
+
+    removeBid({ params }, res) {
+        Job.findOneAndUpdate(
+            { _id: params.jobId },
+            { $pull: { bid: { bidId: params.bidId } } },
+            { new: true }
+        )
+            .then(dbJobData => res.json(dbJobData))
+            .catch(err => res.json(err));
+    }
+
+    
 
 }
 
