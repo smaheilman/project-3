@@ -29,3 +29,13 @@ export const userLogin = (userData) => {
         body: JSON.stringify(userData)
     })
 };
+
+export const getJobs = (jobData) => {
+    return fetch('/api/jobs', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jobData)
+    })
+};

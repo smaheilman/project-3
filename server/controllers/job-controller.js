@@ -1,0 +1,115 @@
+const res = require('express/lib/response');
+const {User, Job, Comment} = require('../models');
+
+module.exports = {
+    getAllJobs(req, res) {
+        Job.find({})
+            .populate({
+                path: 'jobs',
+                include: [
+                    {
+                    path: 'comments',
+                    model : 'Comment'
+                    }
+                ]
+            })
+            .sort({createdAt: -1})
+            .then(dbJobData => res.json(dbJobData))
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err);
+            })
+    },
+    
+    getJobById({ params }, res) {
+        Job.findOne({ _id: params.jobId })
+            .populate({
+                path: 'job',
+                include: [
+                    {
+                    path: 'comments',
+                    model : 'Comment'
+                    }
+                ]
+            })
+            .then(dbJobData => {
+                //if no Job found
+                if (!dbJobData) {
+                    res.status(404).json({ message: 'No job found with this id!' });
+                    return;
+                }
+                res.json(dbJobData);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err);
+            });
+    },
+
+    createJob(req, res) {
+        Job.create(req.body)
+            .then(dbJobData => res.json(dbJobData))
+            .catch(err => res.status(400).json(err));
+    },
+
+    updateJob({ params, body }, res) {
+        Job.findOneAndUpdate({ _id: params.jobId }, body, { new: true, runValidators: true })
+            .then(dbJobData => {
+                if (!dbJobData) {
+                    res.status(404).json({ message: 'No job found with this id!' });
+                    return;
+                }
+                res.json(dbJobData);
+            })
+            .catch(err => res.status(400).json(err));
+    },
+
+    //add bid
+    addBid({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.jobId },
+            { $push: { bid: body } },
+            { new: true, runValidators:true }
+        )
+            .then(dbJobData => {
+                if (!dbJobData) {
+                    res.status(404).json({ message: 'No Job found with this id!' });
+                    return;
+                }
+                res.json(dbJobData);
+            })
+            .catch(err => res.json(err));
+    },
+
+    //add comments
+    addComment({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.jobId },
+            { $push: { comments: body } },
+            { new: true, runValidators:true }
+        )
+            .then(dbJobData => {
+                if (!dbJobData) {
+                    res.status(404).json({ message: 'No Job found with this id!' });
+                    return;
+                }
+                res.json(dbJobData);
+            })
+            .catch(err => res.json(err));
+    },
+
+    //check associations
+    deleteJob({ params }, res) {
+        Job.findOneAndDelete({ _id: params.jobId })
+            .then(dbjobData => {
+                if (!dbjobData) {
+                    res.status(404).json({ message: 'No job found with this id!' });
+                    return;
+                }
+                res.json(dbjobData);
+            })
+            .catch(err => res.status(400).json(err));
+    },
+
+}
+

@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import Auth from '../utils/auth';
+import { getLoggedUser } from '../utils/API';
 
 const Profile = (props) => {
-    const { username: userParam } = useParams();
-    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-        variables: { username: userParam },
-    });
 
-    const user = data?.me || data?.user || {};
+    const { username: userParam } = useParams();
+
+    useEffect (() => {
+        handleGetUserProfile();},
+        []);
 
     // redirect to personal profile page if username is yours
-    if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    if (Auth.loggedIn() && Auth.user().data.username === userParam) {
         return <Redirect to="/profile" />;
     }
 

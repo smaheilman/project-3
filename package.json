@@ -22,5 +22,8 @@
   "homepage": "https://github.com/smaheilman/project-3#readme",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
   }
 }
