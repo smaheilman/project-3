@@ -1,10 +1,10 @@
 const res = require('express/lib/response');
 const { User, Job } = require('../models');
-const { authMiddleware } = require('../../utils/auth');
+const { authMiddleware } = require('../utils/auth');
 
 const jobController = {
     getAllJobs(req, res) {
-        Job.findAll({})
+        Job.find()
             .populate({
                 path: 'jobs',
             })
