@@ -50,7 +50,7 @@ export const getJobs = (jobData) => {
     })
 };
 
-export const getSingleJob = (jobData) => {
+export const getSingleJob = (jobId, jobData) => {
     return fetch(`/api/job/${jobId}`, {
         method: 'GET',
         headers: {
@@ -60,7 +60,7 @@ export const getSingleJob = (jobData) => {
     })
 };
 
-export const createComment =(jobData) => {
+export const createComment =(jobId, jobData) => {
     return fetch(`api/job/${jobId}`, {
         method: 'PUT',
         headers: {

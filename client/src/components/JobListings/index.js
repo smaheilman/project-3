@@ -22,7 +22,7 @@ const JobList = (props) => {
               Job created on {jobs.createdAt}
             </p>
             <div className="card-body">
-              <Link to={`/job/${job._id}`}>
+              <Link to={`/job/${jobs._id}`}>
                 <p>{jobs.jobText}</p>
                 <p className="mb-0">
                   Bids: 
