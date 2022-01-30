@@ -30,8 +30,18 @@ export const userLogin = (userData) => {
     })
 };
 
+export const createJob = (jobData) => {
+    return fetch('/api/jobs/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jobData)    
+    })
+}
+
 export const getJobs = (jobData) => {
-    return fetch('/api/jobs', {
+    return fetch('/api/jobs/', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -39,3 +49,23 @@ export const getJobs = (jobData) => {
         body: JSON.stringify(jobData)
     })
 };
+
+export const getSingleJob = (jobData) => {
+    return fetch(`/api/job/${jobId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jobData)
+    })
+};
+
+export const createComment =(jobData) => {
+    return fetch(`api/job/${jobId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(jobData)
+    })
+}

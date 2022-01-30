@@ -2,32 +2,69 @@ import React, { useEffect } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { getLoggedUser } from '../utils/API';
+import { application } from 'express';
 
 const Profile = (props) => {
 
-    const { username: userParam } = useParams();
+    const [userData, setUserData] = useState({});
 
-    useEffect (() => {
-        handleGetUserProfile();},
-        []);
-
-    // redirect to personal profile page if username is yours
-    if (Auth.loggedIn() && Auth.user().data.username === userParam) {
-        return <Redirect to="/profile" />;
+    // use this to determine if `useEffect()` hook needs to run again
+    const userDataLength = Object.keys(userData).length;
+  
+    useEffect(() => {
+      const getUserData = async () => {
+        try {
+          const token = Auth.loggedIn() ? Auth.getToken() : null;
+  
+          if (!token) {
+            return false;
+          }
+  
+          const response = await getMe(token);
+  
+          if (!response.ok) {
+            throw new Error('something went wrong!');
+          }
+  
+          const user = await response.json();
+          setUserData(user);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+  
+      getUserData();
+    }, [userDataLength]);
+  
+    // create function that accepts the book's mongo _id value as param and deletes the book from the database
+    const handleDeleteJob = async (jobId) => {
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
+  
+      if (!token) {
+        return false;
+      }
+  
+      try {
+        const response = await deleteJob(jobId, token);
+  
+        if (!response.ok) {
+          throw new Error('something went wrong!');
+        }
+  
+        const updatedUser = await response.json();
+        setUserData(updatedUser);
+        // upon success, remove book's id from localStorage
+        removeJobId(JobId);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+  
+    // if data isn't here yet, say so
+    if (!userDataLength) {
+      return <h2>LOADING...</h2>;
     }
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (!user?.username) {
-        return (
-            <h4>
-                You need to be logged in to see this. Use the navigation links above to
-                sign up or log in!
-            </h4>
-        );
-    }
+  
 
     return (
         <div>

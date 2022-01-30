@@ -1,5 +1,6 @@
 const res = require('express/lib/response');
-const { User, Job, Comment } = require('../models');
+const { User, Job } = require('../models');
+const { authMiddleware } = require('../../utils/auth');
 
 const jobController = {
     getAllJobs(req, res) {
