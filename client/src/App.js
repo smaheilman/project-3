@@ -1,5 +1,5 @@
 //import { format } from "express/lib/response";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -7,8 +7,12 @@ import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 //import Profile from "./pages/Profile";
 import Home from './pages/Home';
+import API from './utils/API';
 
 function App() {
+
+  const [user] = useState({Username: "user"});
+  const [isLogged, setIsLogged] = useState(false);
 
   return (
     <Router>

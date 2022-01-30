@@ -34,6 +34,4 @@ router
     .route('/:jobId/:bidId')
     .delete(removeBid)
 
-router.route('/:userId/:thoughtId/:reactionId').delete(removeReaction);
-
 module.exports =router;

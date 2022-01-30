@@ -12,10 +12,10 @@ const jobSchema = new Schema(
         description: {
             type: String,
             required: true,
-            validate: {
-                minlength: 1,
-                maxlength: 200
-            }
+           // validate: {
+           //     minlength: 1,
+           //     maxlength: 200
+           // }
         },
         bids: [bidSchema],
         postedBy: {
