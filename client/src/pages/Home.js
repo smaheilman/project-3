@@ -4,7 +4,9 @@ import JobForm from '../components/JobForm';
 import Auth from '../utils/auth';
 import JobList from '../components/JobListings';
 
+
 const Home = () => {
+
 
     const loggedIn = Auth.loggedIn();
 

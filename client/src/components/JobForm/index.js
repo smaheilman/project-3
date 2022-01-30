@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { createJob } from '../utils/API';
-import Auth from '../utils/auth';
+import { createJob } from '../../utils/API';
+import Auth from '../../utils/auth';
+import {Form, Button, Alert} from 'react-bootstrap';
 
 const JobForm = () => {
   // set initial form state
@@ -40,7 +41,7 @@ const JobForm = () => {
       setShowAlert(true);
     }
 
-    setUserFormData({
+    setJobFormData({
       title: '',
       description: ''
     });
