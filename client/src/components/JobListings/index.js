@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getJobs } from '../../utils/API';
+import React from 'react';
+// import { Link } from 'react-router-dom';
+// import { getJobs } from '../../utils/API';
 
 const JobList = (props) => {
 
 
   return (
     <div>
-      <h3>{title}</h3>
+      {/* <h3>{title}</h3>
       {jobs &&
         jobs.map(jobs => (
           <div key={jobs._id} className="card mb-3">
@@ -30,7 +30,7 @@ const JobList = (props) => {
               </Link>
             </div>
           </div>
-        ))}
+        ))} */}
     </div>
   );
 };
