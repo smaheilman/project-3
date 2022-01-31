@@ -6,10 +6,10 @@ const commentSchema = new Schema(
         commentBody: {
             type: String,
             required: true,
-            validate: {
-                minlength: 1,
-                maxlength: 200
-            }
+            // validate: {
+            //     minlength: 1,
+            //     maxlength: 200
+            // }
         },
         createdAt: {
             type: Date,
