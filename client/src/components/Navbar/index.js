@@ -22,9 +22,9 @@ const Navbar = () => {
           {sidenav ? <i className="fa-solid fa-xmark"></i> : <i className="fa-solid fa-bars"></i>}
         </button>
         <div className="header-container">
-          {/* <div className="header-image">
+          <div className="header-image">
             <a className="image-link" href="/">
-              <img alt="jake" src={require("../../assets/images/pfp.jpeg")}></img>
+              <img alt="jake" src={require("../../assets/pfp_placeholder.png")}></img>
             </a>
             <div className="header-links">
               <a href="https://github.com/Jakeology" target="_blank" rel="noreferrer">
@@ -37,9 +37,9 @@ const Navbar = () => {
                 <i className="fa-brands fa-stack-overflow"></i>
               </a>
             </div>
-          </div> */}
-          <div>
-            <Link to="/home">Home</Link>
+          </div>
+          <div className="header-menu">
+            <Link to="/">Home</Link>
             {Auth.loggedIn() ? (
               <>
                 <Link to="/profile">Profile</Link>
@@ -57,7 +57,7 @@ const Navbar = () => {
           <p className="header-copyright">
             &copy; 2022{" "}
             <b>
-              <a href="/">Jakeology.io</a>
+              <a href="/">Imperium</a>
             </b>
           </p>
         </div>
