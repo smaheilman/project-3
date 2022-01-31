@@ -1,42 +1,27 @@
 //import { format } from "express/lib/response";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Login from "./pages/Login";
-import NoMatch from "./pages/NoMatch";
-//import Profile from "./pages/Profile";
-import Home from './pages/Home';
-
-//const authLink = setContext((_, { headers }) => {
-//  const token = localStorage.getItem('id_token');
-//  return {
-//    headers: {
-//      ...headers,
-//      authorization: token ? `Bearer ${token}` : '',
-//    },
-//  };
-//});
+import Landing from "./components/Landing";
+import { Link, BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
 
 function App() {
 
   return (
     <Router>
-      <div>
-        <Header />
-        <div className="container">
-            <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route exact path="/login" component={Login} />
-              {/* <Route exact path="/profile" component={Profile} /> */}
-              <Route component={NoMatch} />
-            </Switch>
-          </div>
-        <Footer />
-      </div>
+      <Switch>
+        <Route exact path="/">
+          <Header />
+          <Landing />
+          <Footer />
+        </Route>
+        <Route exact path="/">
+          <Header />
+          <Footer />
+        </Route>
+      </Switch>
     </Router>
-
-  )
+  );
 }
 
 export default App;

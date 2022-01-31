@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const {
   createUser,
-  getSingleUser,
+  getMe,
   login,
+  getSingleUser
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -13,6 +14,8 @@ router.route('/').post(createUser).put(authMiddleware);
 
 router.route('/login').post(login);
 
-router.route('/me').get(authMiddleware, getSingleUser);
+router.route('/me').get(authMiddleware, getMe);
+
+router.route('/:userId').get(getSingleUser);
 
 module.exports = router;

@@ -1,11 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import ReactionList from '../components/ReactionList';
-import ReactionForm from '../components/ReactionForm';
+import { deleteJob } from '../utils/API';
 import Auth from '../utils/auth';
 
 const SingleJob = (props) => {
-    
+
     const { id: jobId } = useParams();
 
     const [error, setError] = useState(null);
@@ -36,17 +35,39 @@ const SingleJob = (props) => {
         return <div>Loading...</div>;
     }
 
+    const handleDeleteJob = async (jobId) => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if (!token) {
+            return false;
+        }
+
+        try {
+            const response = await deleteJob(jobId, token);
+
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+
+            const updatedUser = await response.json();
+            setUserData(updatedUser);
+
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     return (
         <div>
             <div className="card mb-3">
                 <p className="card-header">
                     <span style={{ fontWeight: 700 }} className="text-light">
-                        {job.username}
+                        {jobs.username}
                     </span>{' '}
-                    Job created on {job.createdAt}
+                    Job created on {jobs.jobId.createdAt}
                 </p>
                 <div className="card-body">
-                    <p>{job.jobText}</p>
+                    <p>{jobs.jobText}</p>
                 </div>
             </div>
         </div>
