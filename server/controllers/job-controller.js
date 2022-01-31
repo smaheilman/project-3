@@ -69,7 +69,7 @@ const jobController = {
 
     //add bid
     addBid({ params, body }, res) {
-        Thought.findOneAndUpdate(
+        Job.findOneAndUpdate(
             { _id: params.jobId },
             { $push: { bid: body } },
             { new: true, runValidators: true }
