@@ -35,7 +35,7 @@ router
     .delete(removeComment)
 
 router
-    .route('/:jobId/:bidId')
+    .route('/:jobId/bids/:bidId')
     .delete(removeBid)
 
 module.exports =router;
