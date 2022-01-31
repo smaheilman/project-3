@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import Nav from './Nav/index';
-import Home from '../pages/Home';
-import LoginForm from '../pages/Login';
-import SignupForm from '../pages/Signup';
-import Dashboard from '../pages/Dashboard'
-import Auth from '../utils/auth';
+import Nav from './index';
+import Home from '../../pages/Home';
+import LoginForm from '../../pages/Login';
+import SignupForm from '../../pages/Signup';
+import Dashboard from '../../pages/Dashboard'
+import Auth from '../../utils/auth';
 
 function Portfolio() {
     // Using useState, set the default value for currentPage to 'Home'
