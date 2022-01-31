@@ -2,7 +2,7 @@ import React from 'react';
 import Home from '../../pages/Home'
 import { Link, BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
 
-import { Typography } from '@mui/material';
+import { Typography } from '@material-ui/core';
 
 const Header = () => {
   const location = useLocation();
@@ -16,7 +16,7 @@ const Header = () => {
       </div>
       <ul>
         <li>Test</li>
-        <li></li>
+        <Typography>T</Typography>
       </ul>
     </header>
   );
