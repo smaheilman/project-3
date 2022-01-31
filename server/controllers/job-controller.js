@@ -5,9 +5,10 @@ const { authMiddleware } = require('../utils/auth');
 const jobController = {
     getAllJobs(req, res) {
         Job.find()
-            .populate({
-                path: 'jobs',
-            })
+            // .populate({
+            //     path: 'jobs',
+            // })
+            .select('-__v')
             .sort({ createdAt: -1 })
             .then(dbJobData => res.json(dbJobData))
             .catch(err => {
@@ -18,9 +19,9 @@ const jobController = {
 
     getJobById({ params }, res) {
         Job.findOne({ _id: params.jobId })
-            .populate({
-                path: 'job',
-            })
+            // .populate({
+            //     path: 'job',
+            // })
             .then(dbJobData => {
                 //if no Job found
                 if (!dbJobData) {
@@ -71,7 +72,7 @@ const jobController = {
     addBid({ params, body }, res) {
         Job.findOneAndUpdate(
             { _id: params.jobId },
-            { $push: { bid: body } },
+            { $push: { bids: body } },
             { new: true, runValidators: true }
         )
             .then(dbJobData => {
