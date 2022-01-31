@@ -6,7 +6,8 @@ const jobController = {
     getAllJobs(req, res) {
         Job.find()
             .populate({
-                path: 'jobs',
+                path: 'comments',
+                path: 'bids'
             })
             .sort({ createdAt: -1 })
             .then(dbJobData => res.json(dbJobData))
@@ -19,7 +20,8 @@ const jobController = {
     getJobById({ params }, res) {
         Job.findOne({ _id: params.jobId })
             .populate({
-                path: 'job',
+                path: 'comments',
+                path:'bids'
             })
             .then(dbJobData => {
                 //if no Job found
@@ -45,9 +47,9 @@ const jobController = {
                 )
             })
             .then(dbJobData => {
-                if (!dbJobData) {
-                    return res.status(404).json({ message: 'No Job found with this id' });
-                }
+              //  if (!dbJobData) {
+              //      return res.status(404).json({ message: 'No Job found with this id' });
+              //  }
                 res.json(dbJobData);
             })
             .catch(err => {

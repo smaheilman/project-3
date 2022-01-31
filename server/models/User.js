@@ -23,13 +23,13 @@ const userSchema = new Schema(
         postedJobs: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Job'
+                ref: 'Jobs'
             }
         ],
         savedJobs: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Job'
+                ref: 'Jobs'
             }
         ]
     },

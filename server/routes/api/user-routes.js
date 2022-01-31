@@ -3,11 +3,15 @@ const {
   createUser,
   getMe,
   login,
-  getSingleUser
+  getSingleUser,
+  getAllUsers
 } = require('../../controllers/user-controller');
 
 // import middleware
 const { authMiddleware } = require('../../utils/auth');
+
+router.route('/')
+    .get(getAllUsers)
 
 // put authMiddleware anywhere we need to send a token for verification of user
 router.route('/').post(createUser).put(authMiddleware);

@@ -12,11 +12,10 @@ const {getAllJobs,
     
 router.route('/')
     .get(getAllJobs)
-
-router.route('/:userId')
     .post(createJob)
-    .get(getJobById)
 
+//router.route('/:userId')
+    
 
 router
     .route('/:jobId')
@@ -24,6 +23,7 @@ router
     .put(updateJob)
     .delete(deleteJob)
     .put(addBid)
+    .get(getJobById)
 
 router 
     .route('/:jobId/:commentId')

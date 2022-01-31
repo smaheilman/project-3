@@ -27,7 +27,14 @@ const jobSchema = new Schema(
                 default: Date.now,
                 get: (createdAtVal) => dateFormat(createdAtVal)
         },
-        comments: [commentSchema]
+        comments: [commentSchema],
+        username: {
+            type: String,
+            references: {
+                model: 'User',
+                key: 'username'
+            }
+        }
     },
     {
         toJSON: {
@@ -35,7 +42,8 @@ const jobSchema = new Schema(
             virtuals: true
         },
         id: false
-    }
+    },
+    
 )
 
 // virtual to get the bid count for a job
