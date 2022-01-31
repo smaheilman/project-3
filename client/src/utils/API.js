@@ -62,6 +62,16 @@ export const getSingleJob = (jobId, jobData) => {
     })
 };
 
+export const deleteJob = (jobId, jobData) => {
+    return fetch(`/api/job/${jobId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jobData)
+    })
+};
+
 export const createComment =(jobId, jobData) => {
     return fetch(`api/job/${jobId}`, {
         method: 'PUT',

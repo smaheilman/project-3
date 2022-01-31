@@ -34,7 +34,7 @@ const JobList = (props) => {
   }, [jobDataLength]);
 
   if (!jobDataLength) {
-    return <h2>LOADING...</h2>;
+    return <h2>No Jobs to display.</h2>;
   }
 
 
