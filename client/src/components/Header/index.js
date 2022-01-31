@@ -2,8 +2,6 @@ import React from 'react';
 import Home from '../../pages/Home'
 import { Link, BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
 
-import { Typography } from '@mui/material';
-
 const Header = () => {
   const location = useLocation();
   console.log(location);

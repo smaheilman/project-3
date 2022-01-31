@@ -4,54 +4,54 @@ import Auth from '../../utils/auth';
 import {Form, Button, Alert} from 'react-bootstrap';
 
 const JobForm = () => {
-  // set initial form state
-  const [jobFormData, setJobFormData] = useState({ title: '', description: ''});
-  // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
+  // // set initial form state
+  // const [jobFormData, setJobFormData] = useState({ title: '', description: ''});
+  // // set state for form validation
+  // const [validated] = useState(false);
+  // // set state for alert
+  // const [showAlert, setShowAlert] = useState(false);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setJobFormData({ ...jobFormData, [name]: value });
-  };
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setJobFormData({ ...jobFormData, [name]: value });
+  // };
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+  //   // check if form has everything (as per react-bootstrap docs)
+  //   const form = event.currentTarget;
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault();
+  //     event.stopPropagation();
+  //   }
 
-    try {
-      const response = await createJob(jobFormData);
+  //   try {
+  //     const response = await createJob(jobFormData);
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+  //     if (!response.ok) {
+  //       throw new Error('something went wrong!');
+  //     }
 
-      const { token, user } = await response.json();
-      console.log(user);
-      Auth.login(token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
+  //     const { token, user } = await response.json();
+  //     console.log(user);
+  //     Auth.login(token);
+  //   } catch (err) {
+  //     console.error(err);
+  //     setShowAlert(true);
+  //   }
 
-    setJobFormData({
-      title: '',
-      description: ''
-    });
-  };
+  //   setJobFormData({
+  //     title: '',
+  //     description: ''
+  //   });
+  // };
 
   return (
     <>
-      {/* This is needed for the validation functionality above */}
+{/* 
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        {/* show alert if server response is bad */}
+
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your job creation!
         </Alert>
@@ -87,7 +87,7 @@ const JobForm = () => {
           variant='success'>
           Submit
         </Button>
-      </Form>
+      </Form> */}
     </>
   );
 };
