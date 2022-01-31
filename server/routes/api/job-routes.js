@@ -15,15 +15,19 @@ router.route('/')
 
 router.route('/:userId')
     .post(createJob)
-    .get(getJobById)
 
 
 router
     .route('/:jobId')
+    .get(getJobById)
     .put(addComment)
     .put(updateJob)
     .delete(deleteJob)
-    .put(addBid)
+
+router
+    .route('/:jobId/bids')
+    .post(addBid)
+
 
 router 
     .route('/:jobId/:commentId')
@@ -31,7 +35,7 @@ router
     .delete(removeComment)
 
 router
-    .route('/:jobId/:bidId')
+    .route('/:jobId/bids/:bidId')
     .delete(removeBid)
 
 module.exports =router;

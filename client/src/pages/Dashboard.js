@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 //import { Redirect, useParams } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { getLoggedUser} from '../utils/API';
+import JobForm from '../components/JobForm';
 //import { application } from 'express';
 
 const Dashboard = (props) => {
@@ -49,6 +50,7 @@ const Dashboard = (props) => {
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
           {/* Viewing {userParam ? `${user.username}'s` : 'your'} profile. */}
         </h2>
+        <JobForm/>
       </div>
     </div>
   );

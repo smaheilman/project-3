@@ -48,5 +48,10 @@ module.exports = {
       return res.status(400).json({ message: 'No user with this id' })
     }
     res.json(user);
+  },
+  async getAllUsers(req, res) {
+    const users = await User.find({}).select('-__v');
+
+    res.json(users);
   }
 };
