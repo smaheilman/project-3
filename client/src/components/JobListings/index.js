@@ -1,70 +1,68 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getJobs, getLoggedUser } from '../../utils/API';
+import { getUsers, getLoggedUser } from '../../utils/API';
 import Auth from '../../utils/auth'
+import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 const JobList = (props) => {
 
-  const [jobData, setJobData] = useState([]);
+  const [userData, setUserData] = useState({});
 
-  const jobDataLength = Object.keys(jobData).length;
+  // use this to determine if `useEffect()` hook needs to run again
+  const userDataLength = Object.keys(userData).length;
 
   useEffect(() => {
-    const getJobData = async () => {
+    const getUserData = async () => {
       try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        if (!token) {
-          return false;
-        }
-
-        const response = await getLoggedUser(token);
+        const response = await getUsers(userData);
 
         if (!response.ok) {
           throw new Error('something went wrong!');
         }
 
-        const jobs = await response.json();
-        setJobData(jobs);
+        const user = await response.json();
+        setUserData(user);
       } catch (err) {
         console.error(err);
       }
     };
-    getJobData();
-  }, [jobDataLength]);
 
-  if (!jobDataLength) {
-    return <h2>No Jobs to display.</h2>;
+    getUserData();
+  }, [userDataLength]);
+
+
+  if (!userDataLength) {
+    return <h2>LOADING...</h2>;
   }
 
-
   return (
-    <div>
-      <h3>{getJobs.title}</h3>
-      {jobData.title &&
-        jobData.map(jobs => (
-          <div key={jobs._id} className="card mb-3">
-            <p className="card-header">
-              <Link
-                to={`/profile/${jobs.username}`}
-                style={{ fontWeight: 700 }}
-                className="text-light"
-              >
-                {jobs.username}
-              </Link>{' '}
-              Job created on {getJobs.createdAt}
-            </p>
-            <div className="card-body">
-              <Link to={`/job/${jobs._id}`}>
-                <p>{jobs.jobText}</p>
-                <p className="mb-0">
-                  Bids:
-                </p>
-              </Link>
-            </div>
-          </div>
-        ))}
-    </div>
+    <>
+      <Jumbotron fluid className='text-light bg-dark'>
+        <Container>
+          <h1>Jobs!</h1>
+        </Container>
+      </Jumbotron>
+      <Container>
+        <h2>
+          {userData.postedJobs.length
+            ? `Viewing ${userData.postedJobs.length} saved ${userData.postedJobs.length === 1 ? 'job' : 'jobs'}:`
+            : 'You have no Jobs!'}
+        </h2>
+        <CardColumns>
+          {userData.postedJobs.map((jobs) => {
+            return (
+              <Card key={jobs.jobId} border='dark'>
+                <Card.Body>
+                  <Card.Title>{jobs.title}</Card.Title>
+                  <p className='small'>Description: {jobs.description}</p>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+      </Container>
+    </>
   );
 };
 

@@ -1,5 +1,3 @@
-import axios from "axios";
-
 // route to get logged in user info
 export const getLoggedUser = (token) => {
     return fetch('/api/users/me', {
@@ -12,7 +10,7 @@ export const getLoggedUser = (token) => {
 
 // sign up/create user profile route
 export const createUser = (userData) => {
-    return fetch('/api/users/signup', {
+    return fetch('/api/users/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -80,4 +78,14 @@ export const createComment =(jobId, jobData) => {
         },
         body: JSON.stringify(jobData)
     })
+}
+
+export const getUsers=(userData) => {
+    return fetch('api/') , {
+        methof: 'GET',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(userData)
+    }
 }

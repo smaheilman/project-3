@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import Nav from './Nav/index';
-import Home from '../pages/Home';
-import LoginForm from '../pages/Login';
-import SignupForm from '../pages/Signup';
-import Dashboard from '../pages/Dashboard'
-import Auth from '../utils/auth';
+import Nav from './index';
+import Home from '../../pages/Home';
+import LoginForm from '../../pages/Login';
+import SignupForm from '../../pages/Signup';
+import Dashboard from '../../pages/Dashboard'
+import Auth from '../../utils/auth';
 
 function Portfolio() {
     // Using useState, set the default value for currentPage to 'Home'
@@ -38,6 +38,7 @@ function Portfolio() {
         {/* Pass the state value and the setter as props to NavTabs */}
         <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
         {/* Call the renderPage function passing in the currentPage */}
+        <div>{renderPage(currentPage)}</div>
         {Auth.loggedIn() ? (
             <>
               <a href="/" onClick={logout}>
@@ -46,7 +47,7 @@ function Portfolio() {
             </>
           ) : (
             <>
-                <div>{renderPage(currentPage)}</div>
+                
             </>
           )}
 
