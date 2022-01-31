@@ -40,15 +40,9 @@ const JobList = (props) => {
 
   return (
     <div>
-<<<<<<< HEAD
-      {/* <h3>{title}</h3>
-      {jobs &&
-        jobs.map(jobs => (
-=======
       <h3>{getJobs.title}</h3>
       {jobData.title &&
         jobData.map(jobs => (
->>>>>>> 4a15c72d03c3ec8bcba8596e10b6c8a64b60d519
           <div key={jobs._id} className="card mb-3">
             <p className="card-header">
               <Link
@@ -69,7 +63,7 @@ const JobList = (props) => {
               </Link>
             </div>
           </div>
-        ))} */}
+        ))}
     </div>
   );
 };
