@@ -12,8 +12,8 @@ const CompletedProjects = ({ username, savedJobs, savedJobCount }) => {
                 {username}'s {savedJobCount} {savedJobCount === 1 ? 'job' : 'jobs'}
             </h4>
             {savedJobs.map(job => (
-                <button key={savedJobs._id}>
-                    <Link to={`api/jobs/${savedJobs._id}`}>{savedJobs.title}</Link>
+                <button key={job._id}>
+                    <Link to={`api/jobs/${job._id}`}>{job.title}</Link>
                 </button>
             ))}
         </div>

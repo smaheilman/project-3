@@ -3,10 +3,10 @@ const dateFormat = require('../utils/dateFormat');
 
 const bidSchema = new Schema(
     {
-        bidId: {
-            type: Schema.Types.ObjectId,
-            default: () => Types.ObjectId
-        },
+        // bidId: {
+        //     type: Schema.Types.ObjectId,
+        //     default: () => Types.ObjectId
+        // },
         bidAmount: {
             type: Number,
             required: true
