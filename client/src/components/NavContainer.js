@@ -38,6 +38,7 @@ function Portfolio() {
         {/* Pass the state value and the setter as props to NavTabs */}
         <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
         {/* Call the renderPage function passing in the currentPage */}
+        <div>{renderPage(currentPage)}</div>
         {Auth.loggedIn() ? (
             <>
               <a href="/" onClick={logout}>
@@ -46,7 +47,7 @@ function Portfolio() {
             </>
           ) : (
             <>
-                <div>{renderPage(currentPage)}</div>
+                
             </>
           )}
 
