@@ -2,22 +2,26 @@
 import React, { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import NavContainer from "./components/NavContainer"
+import Landing from "./components/Landing";
+import { Link, BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
 
 function App() {
 
-
   return (
     <Router>
-      <div>
-        <Header />
-        <NavContainer/>
-        <Footer />
-      </div>
+      <Switch>
+        <Route exact path="/">
+          <Header />
+          <Landing />
+          <Footer />
+        </Route>
+        <Route exact path="/">
+          <Header />
+          <Footer />
+        </Route>
+      </Switch>
     </Router>
-
-  )
+  );
 }
 
 export default App;
