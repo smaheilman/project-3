@@ -1,24 +1,17 @@
 //import { format } from "express/lib/response";
 import React from "react";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Landing from "./components/Landing";
-import { Link, BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
+
+import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import NavBar from "./components/Navbar";
 
 function App() {
 
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
-          <Header />
-          <Landing />
-          <Footer />
-        </Route>
-        <Route exact path="/">
-          <Header />
-          <Footer />
-        </Route>
+        <NavBar/>
+        <Route exact path="/" component={Home} />
       </Switch>
     </Router>
   );
