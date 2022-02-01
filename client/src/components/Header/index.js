@@ -2,6 +2,8 @@ import React from 'react';
 import Home from '../../pages/Home'
 import { Link, BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
 
+import { Typography } from '@material-ui/core';
+
 const Header = () => {
   const location = useLocation();
   return (
@@ -14,7 +16,7 @@ const Header = () => {
       </div>
       <ul>
         <li>Test</li>
-        <li></li>
+        <Typography>T</Typography>
       </ul>
     </header>
   );
