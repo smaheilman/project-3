@@ -81,8 +81,8 @@ export const createComment =(jobId, jobData) => {
 }
 
 export const getUsers=(userData) => {
-    return fetch('api/') , {
-        methof: 'GET',
+    return fetch('api/users/all') , {
+        method: 'GET',
         headers: {
             'Content-Type' : 'application/json'
         },
