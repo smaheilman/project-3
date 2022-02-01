@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Auth from '../utils/auth';
 import { getLoggedUser} from '../utils/API';
 import JobForm from '../components/JobForm';
+import CompletedProjects from '../components/CompletedProjects';
 //import { application } from 'express';
 
 const Dashboard = (props) => {
@@ -51,6 +52,7 @@ const Dashboard = (props) => {
           {/* { Viewing {userParam ? `${user.username}'s` : 'your'} profile.} */}
         </h2>
         <JobForm/>
+        <CompletedProjects/>
       </div>
     </div>
   );
