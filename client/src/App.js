@@ -1,22 +1,22 @@
-//import { format } from "express/lib/response";
-import React from "react";
+import React, { useState } from "react";
 
-import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import NavBar from "./components/Navbar";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
-
   return (
     <Router>
-      <Switch>
-        <NavBar/>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-      </Switch>
+      <NavBar></NavBar>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+        </Switch>
     </Router>
   );
 }

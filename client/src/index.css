@@ -15,9 +15,13 @@ body {
   font-size: 18px;
   line-height: 1.8rem;
   font-family: "Nunito", sans-serif;
-  color: white;
+  color: black;
   font-weight: 400;
   background-color: white;
+}
+
+main {
+  margin-left: 300px;
 }
 
 .nav-menu {
