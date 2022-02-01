@@ -56,6 +56,7 @@ const JobList = (props) => {
                 <Card.Body>
                   <Card.Title>{jobs.title}</Card.Title>
                   <p className='small'>Description: {jobs.description}</p>
+                  <p className='small'>Posted By: {jobs.username}</p>
                 </Card.Body>
               </Card>
             );
