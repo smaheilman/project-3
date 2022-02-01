@@ -45,8 +45,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-<<<<<<< HEAD
-=======
   overflow: hidden;
   overflow-y: auto;
 }
@@ -133,5 +131,4 @@ body {
   overflow: hidden;
   display: inline-block;
   vertical-align: middle;
->>>>>>> f2f8a114f8d471246d250c33de612a998e53c990
 }
