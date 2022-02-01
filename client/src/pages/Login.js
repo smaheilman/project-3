@@ -5,52 +5,6 @@ import { userLogin } from '../utils/API';
 import Auth from '../utils/auth';
 
 const LoginForm = () => {
-<<<<<<< HEAD
- const [userFormData, setUserFormData] = useState({ email: '', password: '' });
- const [validated] = useState(false);
- const [showAlert, setShowAlert] = useState(false);
-
- const handleInputChange = (event) => {
-   const { name, value } = event.target;
-   setUserFormData({ ...userFormData, [name]: value });
- };
-
- const handleFormSubmit = async (event) => {
-   event.preventDefault();
-
-   // check if form has everything (as per react-bootstrap docs)
-   const form = event.currentTarget;
-   if (form.checkValidity() === false) {
-     event.preventDefault();
-     event.stopPropagation();
-   }
-
-   try {
-     const response = await userLogin(userFormData);
-
-     if (!response.ok) {
-       throw new Error('something went wrong!');
-     }
-
-     const { token, user } = await response.json();
-     console.log(user);
-     Auth.login(token);
-   } catch (err) {
-     console.error(err);
-     setShowAlert(true);
-   }
-
-   setUserFormData({
-     username: '',
-     email: '',
-     password: '',
-   });
- };
-
-  return (
-    <>
-       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-=======
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -95,7 +49,6 @@ const LoginForm = () => {
   return (
     <main>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
->>>>>>> 09f405d4027c61709e12e459c1d54fb592269b43
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials!
         </Alert>
@@ -130,13 +83,8 @@ const LoginForm = () => {
           variant='success'>
           Submit
         </Button>
-<<<<<<< HEAD
-      </Form> 
-    </>
-=======
       </Form>
     </main>
->>>>>>> 09f405d4027c61709e12e459c1d54fb592269b43
   );
 };
 
