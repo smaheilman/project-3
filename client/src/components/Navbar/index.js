@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
-
+import NavContainer from "../Nav/NavContainer"
 import Auth from "../../utils/auth";
 
 const Navbar = () => {
@@ -28,7 +28,7 @@ const Navbar = () => {
             </a>
           </div>
           <div className="header-menu">
-            <Link to="/">Home</Link>
+            {/* <Link to="/">Home</Link> */}
             {Auth.loggedIn() ? (
               <>
                 <Link to="/profile">Profile</Link>
@@ -38,8 +38,7 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Signup</Link>
+                <NavContainer/>
               </>
             )}
           </div>

@@ -2,7 +2,7 @@ import React from 'react';
 //import { capitalizeFirstLetter } from '../../utils/helpers';
 
 function Nav(props) {
-    const tabs = ['Login', 'Signup', 'Home', 'Dashboard'];
+    const tabs = ['Home', 'Login', 'Signup',  'Dashboard'];
 
     return (
         <div className='d-flex'>
