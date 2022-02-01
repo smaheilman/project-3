@@ -7,7 +7,7 @@ const CompletedProjects = ({ username, savedJobs, savedJobCount }) => {
     }
 
     return (
-        <div>
+        <main>
             <h4>
                 {username}'s {savedJobCount} {savedJobCount === 1 ? 'job' : 'jobs'}
             </h4>
@@ -16,7 +16,7 @@ const CompletedProjects = ({ username, savedJobs, savedJobCount }) => {
                     <Link to={`api/jobs/${job._id}`}>{job.title}</Link>
                 </button>
             ))}
-        </div>
+        </main>
     )
 }
 
