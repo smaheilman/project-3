@@ -12,12 +12,7 @@ const Home = () => {
 
     return (
         <main>
-            <h3>Home page</h3>
-            <div className="flex-row justify-space-between">         
-                    <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>
-                    <JobList/>
-                    </div>
-            </div>
+            Hello
         </main>
     );
 };
