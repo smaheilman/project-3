@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import NavBar from "./components/Navbar";
+import NavBar from "./components/Navbar/index";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";

@@ -45,8 +45,7 @@ export const getJobs = (jobData) => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(jobData)
+        }
     })
 };
 
@@ -81,7 +80,7 @@ export const createComment =(jobId, jobData) => {
 }
 
 export const getUsers=(userData) => {
-    return fetch('api/users/all') , {
+    return fetch('api/users/') , {
         method: 'GET',
         headers: {
             'Content-Type' : 'application/json'

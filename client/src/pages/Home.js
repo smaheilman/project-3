@@ -13,6 +13,7 @@ const Home = () => {
     return (
         <main>
             Hello
+            <JobList/>
         </main>
     );
 };
