@@ -89,3 +89,13 @@ export const getUsers=(userData) => {
         body: JSON.stringify(userData)
     }
 }
+
+export const addBid=(jobId, jobData) => {
+    return fetch('api/jobs/' + jobId) , {
+        method: "PUT",
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(jobData)
+    }
+}
