@@ -1,21 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getSingleJob, deleteJob } from "../../utils/API";
-<<<<<<< HEAD
-import { Button} from 'react-bootstrap';
-import Auth from "../../utils/auth";
-
-const OneJob = () => {
-    const jobId = window.location.toString().split('/')[
-        window.location.toString().split('/').length - 1
-    ];
-=======
 import { Button } from "react-bootstrap";
 import Auth from "../../utils/auth";
 
 const OneJob = () => {
   const jobId = window.location.toString().split("/")[window.location.toString().split("/").length - 1];
   console.log(jobId);
->>>>>>> 50a311cc2c6098b6ca47ac3aaba45c1e7de3e090
 
   const [jobData, setJobData] = useState([]);
 
@@ -27,33 +17,8 @@ const OneJob = () => {
       try {
         const response = await getSingleJob(jobId);
 
-<<<<<<< HEAD
-                const response = await getSingleJob(jobId);
-
-                if (!response.ok) {
-                    throw new Error('something went wrong!');
-                }
-
-                const job = await response.json();
-                setJobData(job);
-            } catch (err) {
-                console.error(err);
-            }
-        };
-
-        getJobData();
-    }, [jobId]);
-
-
-    const handleDeleteJob = async () => {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-        if (!token) {
-            return false;
-=======
         if (!response.ok) {
           throw new Error("something went wrong!");
->>>>>>> 50a311cc2c6098b6ca47ac3aaba45c1e7de3e090
         }
 
         const job = await response.json();

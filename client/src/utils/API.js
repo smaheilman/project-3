@@ -31,16 +31,6 @@ export const userLogin = (userData) => {
 };
 
 export const createJob = (jobData) => {
-<<<<<<< HEAD
-    return fetch('/api/jobs/' , {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(jobData)    
-    })
-}
-=======
   return fetch("/api/jobs/", {
     method: "POST",
     headers: {
@@ -49,7 +39,6 @@ export const createJob = (jobData) => {
     body: JSON.stringify(jobData),
   });
 };
->>>>>>> 50a311cc2c6098b6ca47ac3aaba45c1e7de3e090
 
 export const getJobs = (jobData) => {
   return fetch("/api/jobs/", {
@@ -81,7 +70,7 @@ export const deleteJob = (jobId, jobData) => {
 };
 
 export const createComment = (jobId, jobData) => {
-  return fetch("api/jobs/" + jobId, {
+  return fetch(`api/jobs/${jobId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -104,14 +93,11 @@ export const getUsers = (userData) => {
 };
 
 export const addBid = (jobId, jobData) => {
-  return (
-    fetch("api/jobs/" + jobId),
-    {
+  return fetch("api/jobs/" + jobId, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(jobData),
-    }
-  );
+    });
 };

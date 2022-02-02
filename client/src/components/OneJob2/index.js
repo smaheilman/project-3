@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getSingleJob, addBid } from "../../utils/API";
+import { getSingleJob, addBid, createComment } from "../../utils/API";
 import {  Button} from 'react-bootstrap';
 import Auth from "../../utils/auth";
 
@@ -32,7 +32,7 @@ const OneJob2 = () => {
         };
 
         getJobData();
-    }, [jobId]);
+    }, [jobDataLength, jobId]);
 
     const handleSubmitBid = async () => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -43,7 +43,7 @@ const OneJob2 = () => {
 
         try {
             const response = await addBid(jobId);
-            console.log(jobId)
+            console.log(addBid(jobId))
             if (!response.ok) {
                 throw new Error('something went wrong!');
             }
@@ -57,6 +57,30 @@ const OneJob2 = () => {
             console.error(err);
         }
     };
+
+    const handleSubmitComment = async () => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+    
+        if (!token) {
+          return false;
+        }
+    
+        try {
+          const response = await createComment(jobId);
+          console.log(jobId);
+          if (!response.ok) {
+            throw new Error("something went wrong!");
+          }
+    
+          const updatedJob = await response.json();
+          setJobData(updatedJob);
+    
+          alert("Comment added!");
+          
+        } catch (err) {
+          console.error(err);
+        }
+      };
 
     if (!jobDataLength) {
         return <h2>LOADING...</h2>;
@@ -72,6 +96,8 @@ const OneJob2 = () => {
                 <p>{jobData.description}</p>
                 <input type="number" id="bid" name="bid" value={jobData.bids.bidAmount} placeholder='Place your bid!'></input>
                 <Button onClick={() => handleSubmitBid(jobData._Id)}>Submit</Button>
+                <input type="text" id="comment" name="comment" value={jobData.comments.commentBody} placeholder='Comment'></input>
+                <Button onClick={() => handleSubmitComment(jobData._Id)}>Submit</Button>
             </div>
         </main>
     );

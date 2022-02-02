@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
 //import { Redirect, useParams } from 'react-router-dom';
-<<<<<<< HEAD
-import Auth from '../utils/auth';
-import { getLoggedUser } from '../utils/API';
-import JobForm from '../components/JobForm';
-=======
 import Auth from "../utils/auth";
 import { getLoggedUser } from "../utils/API";
 import JobForm from "../components/JobForm";
->>>>>>> 50a311cc2c6098b6ca47ac3aaba45c1e7de3e090
 //import { application } from 'express';
 import { Container, CardColumns, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
