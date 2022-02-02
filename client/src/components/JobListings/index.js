@@ -46,17 +46,18 @@ const JobList = (props) => {
       <Container>
         <h2>
           {jobData.length
-            ? `Viewing ${jobData.length} saved ${jobData.length === 1 ? 'job' : 'jobs'}:`
+            ? `Viewing ${jobData.length} ${jobData.length === 1 ? 'job' : 'jobs'}:`
             : 'You have no Jobs!'}
         </h2>
         <CardColumns>
           {jobData.map((jobs) => {
+            console.log(jobs.username);
             return (
               <Card key={jobs._id} border='dark'>
                 <Card.Body>
                   <Card.Title>{jobs.title}</Card.Title>
                   <p className='small'>Description: {jobs.description}</p>
-                  <p className='small'>Posted By: {jobs.username}</p>
+                  <p className='small'>User: {jobs.username}</p>
                 </Card.Body>
               </Card>
             );

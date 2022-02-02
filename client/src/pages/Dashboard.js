@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 //import { Redirect, useParams } from 'react-router-dom';
 import Auth from '../utils/auth';
-import { getLoggedUser} from '../utils/API';
+import { getLoggedUser, getSingleJob} from '../utils/API';
 import JobForm from '../components/JobForm';
 import CompletedProjects from '../components/CompletedProjects';
 //import { application } from 'express';
+import {Container, CardColumns, Card} from 'react-bootstrap';
 
 const Dashboard = (props) => {
 
@@ -38,10 +39,9 @@ const Dashboard = (props) => {
     getUserData();
   }, [userDataLength]);
 
-
   // if data isn't here yet, say so
   if (!userDataLength) {
-    return <h2>You have no jobs yet</h2>;
+    return <h2>...Loading</h2>;
   }
 
 
@@ -50,7 +50,7 @@ const Dashboard = (props) => {
     <div>
       <div className="flex-row mb-3">
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
-          {/* { Viewing {userParam ? `${user.username}'s` : 'your'} profile.} */}
+          Hello {userData.username}
         </h2>
         <JobForm/>
         <CompletedProjects
@@ -59,6 +59,26 @@ const Dashboard = (props) => {
           savedJobCount={userData.savedJobCount}
         />
       </div>
+      <Container>
+        <h2>
+          {userData.postedJobs.length
+            ? `Viewing ${userData.postedJobs.length}  ${userData.postedJobs.length === 1 ? 'job' : 'jobs'}:`
+            : 'You have no jobs!'}
+        </h2>
+        <CardColumns>
+          {userData.postedJobs.map((job) => {
+            console.log(job);
+            return (
+              <Card key={job.job_Id} border='dark'>
+                <Card.Body>
+                  <Card.Title>Title: {job.title}</Card.Title>
+                  <Card.Text>Description: {job.description}</Card.Text>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+      </Container>
     </div>
     </main>
   );

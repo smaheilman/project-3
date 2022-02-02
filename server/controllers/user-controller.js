@@ -17,7 +17,11 @@ module.exports = {
   async getMe({ user = null, params }, res) {
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    });
+    })
+    .populate(
+      {path: 'postedJobs',
+      select: '-__v'}
+    );
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
