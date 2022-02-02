@@ -92,7 +92,7 @@ const JobList = (props) => {
               <Card key={jobs._id} border="dark">
                 <Card.Body>
                   <Card.Title>
-                    <Link to={`/onejob/${jobs._id}`}> Title: {jobs.title}</Link>
+                    <Link to={`/onejob2/${jobs._id}`}> Title: {jobs.title}</Link>
                   </Card.Title>
                   <p className="small">Description: {jobs.description}</p>
                   <p className="small">User: {jobs.username}</p>

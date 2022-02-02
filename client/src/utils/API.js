@@ -70,7 +70,7 @@ export const deleteJob = (jobId, jobData) => {
 };
 
 export const createComment = (jobId, jobData) => {
-  return fetch("api/jobs/" + jobId, {
+  return fetch(`api/jobs/${jobId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -93,16 +93,13 @@ export const getUsers = (userData) => {
 };
 
 export const addBid = (jobId, jobData) => {
-  return (
-    fetch("api/jobs/" + jobId),
-    {
+  return fetch("api/jobs/" + jobId, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(jobData),
-    }
-  );
+    });
 };
 
 export const saveJob = (jobData, token) => {
