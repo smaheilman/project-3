@@ -104,3 +104,14 @@ export const addBid = (jobId, jobData) => {
     }
   );
 };
+
+export const saveJob = (jobData, token) => {
+  return fetch('/api/users/', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(jobData)
+  })
+};
