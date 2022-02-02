@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getSingleJob, deleteJob } from "../../utils/API";
-import { Button } from "react-bootstrap";
+import { Button, Container, CardColumns, Card } from "react-bootstrap";
 import Auth from "../../utils/auth";
 
 const OneJob = () => {
@@ -68,6 +68,27 @@ const OneJob = () => {
           Delete this Job!
         </Button>
       </div>
+      <Container>
+                    <h2>
+                        {jobData.bids.length ? `Viewing ${jobData.bids.length} ${jobData.bids.length === 1 ? "bid" : "bids"}:` : "You have no bids yet!"}
+                    </h2>
+                    <CardColumns>
+                        {jobData.bids.map((bids) => {
+                            //console.log(jobs._id)
+
+                            return (
+                                <Card key={bids._id} border="dark">
+                                    <Card.Body>
+                                        <Card.Title>
+                                        </Card.Title>
+                                        <p className="small">Bid Amount: ${bids.bidAmount}</p>
+                                        <p>By: {bids.username}</p>
+                                    </Card.Body>
+                                </Card>
+                            );
+                        })}
+                    </CardColumns>
+                </Container>
     </main>
   );
 };

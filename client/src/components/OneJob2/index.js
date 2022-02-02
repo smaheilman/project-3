@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getSingleJob, addBid, createComment } from "../../utils/API";
-import {  Button} from 'react-bootstrap';
+import {  Button, Container, CardColumns, Card} from 'react-bootstrap';
 import Auth from "../../utils/auth";
 
 const OneJob2 = () => {
@@ -86,9 +86,6 @@ const OneJob2 = () => {
         return <h2>LOADING...</h2>;
     }
 
-
-
-
     return (
         <main>
             <div>
@@ -98,6 +95,27 @@ const OneJob2 = () => {
                 <Button onClick={() => handleSubmitBid(jobData._Id)}>Submit</Button>
                 <input type="text" id="comment" name="comment" value={jobData.comments.commentBody} placeholder='Comment'></input>
                 <Button onClick={() => handleSubmitComment(jobData._Id)}>Submit</Button>
+                <Container>
+        <h2>
+          {jobData.bids.length ? `Viewing ${jobData.bids.length} ${jobData.bids.length === 1 ? "bid" : "bids"}:` : "You have no Jobs!"}
+        </h2>
+        <CardColumns>
+          {jobData.bids.map((bids) => {
+            //console.log(jobs._id)
+
+            return (
+              <Card key={bids._id} border="dark">
+                <Card.Body>
+                  <Card.Title>
+                  </Card.Title>
+                  <p className="small">Bid Amount: ${bids.bidAmount}</p>
+                  <p>By: {bids.username}</p>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+      </Container>
             </div>
         </main>
     );
