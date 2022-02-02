@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-const req = require("express/lib/request");
->>>>>>> 895e6d745614a98cc6f607f15ac4889a678252ae
 const res = require("express/lib/response");
 const { User, Jobs } = require("../models");
 const { authMiddleware } = require("../utils/auth");

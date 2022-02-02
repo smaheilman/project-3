@@ -61,7 +61,7 @@ export const getSingleJob = (jobId, jobData) => {
 };
 
 export const deleteJob = (jobId, jobData) => {
-    return fetch('/api/job/' + jobId, {
+    return fetch('/api/jobs/' + jobId, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ export const deleteJob = (jobId, jobData) => {
 };
 
 export const createComment =(jobId, jobData) => {
-    return fetch(`api/job/${jobId}`, {
+    return fetch('api/jobs/' + jobId, {
         method: 'PUT',
         headers: {
             'Content-Type' : 'application/json'

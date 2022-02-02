@@ -35,7 +35,7 @@ const OneJob = () => {
     }, [jobDataLength]);
 
 
-    const handleDeleteJob = async (jobId) => {
+    const handleDeleteJob = async () => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
@@ -43,14 +43,17 @@ const OneJob = () => {
         }
 
         try {
-            const response = await deleteJob(jobId, token);
-
+            const response = await deleteJob(jobId);
+            console.log(jobId)
             if (!response.ok) {
                 throw new Error('something went wrong!');
             }
 
             const updatedJob = await response.json();
             setJobData(updatedJob);
+
+            alert('Record has been successfully deleted'); 
+            window.location.replace("/profile");
 
         } catch (err) {
             console.error(err);
@@ -60,6 +63,8 @@ const OneJob = () => {
     if (!jobDataLength) {
         return <h2>LOADING...</h2>;
     }
+
+    
     return (
         <main>
             <div>

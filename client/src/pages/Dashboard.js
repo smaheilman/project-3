@@ -6,6 +6,7 @@ import JobForm from '../components/JobForm';
 //import { application } from 'express';
 import {Container, CardColumns, Card} from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import CompletedProjects from '../components/CompletedProjects';
 
 const Dashboard = (props) => {
 
@@ -74,6 +75,7 @@ const Dashboard = (props) => {
           })}
         </CardColumns>
       </Container>
+      <CompletedProjects/>
     </div>
     </main>
   );
