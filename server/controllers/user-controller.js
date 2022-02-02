@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const { update } = require('../models/User');
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
 
@@ -62,5 +63,20 @@ module.exports = {
     const users = await User.find({}).select('-__v');
 
     res.json(users);
+  },
+  // save a job to the savedJobs array in the User model
+  async saveJob({ user, body }, res) {
+    console.log(user);
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedJobs: body } },
+        { new: true, runValidators: true }
+      )
+      return res.json(updatedUser)
+    } catch(err) {
+      console.log(err)
+      return res.status(400).json(err)
+    }
   }
 };
