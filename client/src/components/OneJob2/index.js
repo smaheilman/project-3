@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getSingleJob, addBid, createComment } from "../../utils/API";
-import {  Button, Container, CardColumns, Card} from 'react-bootstrap';
+import { Button, Container, CardColumns, Card } from 'react-bootstrap';
 import Auth from "../../utils/auth";
+//import Comment from "../Comment"
 
 const OneJob2 = () => {
     const jobId = window.location.toString().split('/')[
@@ -60,27 +61,27 @@ const OneJob2 = () => {
 
     const handleSubmitComment = async () => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-    
+
         if (!token) {
-          return false;
+            return false;
         }
-    
+
         try {
-          const response = await createComment(jobId);
-          console.log(jobId);
-          if (!response.ok) {
-            throw new Error("something went wrong!");
-          }
-    
-          const updatedJob = await response.json();
-          setJobData(updatedJob);
-    
-          alert("Comment added!");
-          
+            const response = await createComment(jobId);
+            console.log(jobId);
+            if (!response.ok) {
+                throw new Error("something went wrong!");
+            }
+
+            const updatedJob = await response.json();
+            setJobData(updatedJob);
+
+            alert("Comment added!");
+
         } catch (err) {
-          console.error(err);
+            console.error(err);
         }
-      };
+    };
 
     if (!jobDataLength) {
         return <h2>LOADING...</h2>;
@@ -96,26 +97,47 @@ const OneJob2 = () => {
                 <input type="text" id="comment" name="comment" value={jobData.comments.commentBody} placeholder='Comment'></input>
                 <Button onClick={() => handleSubmitComment(jobData._Id)}>Submit</Button>
                 <Container>
-        <h2>
-          {jobData.bids.length ? `Viewing ${jobData.bids.length} ${jobData.bids.length === 1 ? "bid" : "bids"}:` : "You have no Jobs!"}
-        </h2>
-        <CardColumns>
-          {jobData.bids.map((bids) => {
-            //console.log(jobs._id)
+                    <h2>
+                        {jobData.bids.length ? `Viewing ${jobData.bids.length} ${jobData.bids.length === 1 ? "bid" : "bids"}:` : "You have no Jobs!"}
+                    </h2>
+                    <CardColumns>
+                        {jobData.bids.map((bids) => {
+                            //console.log(jobs._id)
 
-            return (
-              <Card key={bids._id} border="dark">
-                <Card.Body>
-                  <Card.Title>
-                  </Card.Title>
-                  <p className="small">Bid Amount: ${bids.bidAmount}</p>
-                  <p>By: {bids.username}</p>
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns>
-      </Container>
+                            return (
+                                <Card key={bids._id} border="dark">
+                                    <Card.Body>
+                                        <Card.Title>
+                                        </Card.Title>
+                                        <p className="small">Bid Amount: ${bids.bidAmount}</p>
+                                        <p>By: {bids.username}</p>
+                                    </Card.Body>
+                                </Card>
+                            );
+                        })}
+                    </CardColumns>
+                </Container>
+                <Container>
+                <h2>
+                    {jobData.comments.length ? `Viewing ${jobData.comments.length} ${jobData.comments.length === 1 ? "comment" : "comments"}:` : "0 Comments"}
+                </h2>
+                <CardColumns>
+                    {jobData.comments.map((comments) => {
+                        //console.log(jobs._id)
+
+                        return (
+                            <Card key={comments._id} border="dark">
+                                <Card.Body>
+                                    <Card.Title>
+                                    </Card.Title>
+                                    <p className="small">{comments.commentBody}</p>
+                                    <p>By: {comments.username}</p>
+                                </Card.Body>
+                            </Card>
+                        );
+                    })}
+                </CardColumns>
+            </Container>
             </div>
         </main>
     );
