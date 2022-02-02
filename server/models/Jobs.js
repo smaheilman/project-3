@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const mongoose = require('mongoose');
 const dateFormat = require("../utils/dateFormat");
 const bidSchema = require("./Bids");
 const commentSchema = require("./Comments");
@@ -40,6 +41,22 @@ const jobSchema = new Schema(
     id: false,
   }
 );
+
+jobSchema.pre('findOneAndDelete', function (next) {
+  console.log(this._conditions._id)
+  const ID = this._conditions._id;
+  mongoose.model("User").updateMany({ savedJobs: ID }, { $pull: { savedJobs: ID } })
+  .then(res => console.log("Id deleted"))
+  return next();
+})
+
+jobSchema.pre('remove', function (next) {
+  const ID = this._conditions._id;
+  mongoose.model("User").updateOne({ postedJobs: ID }, { $pull: { postedJobs: ID } })
+  .then(res => console.log(res))
+
+  return next();
+})
 
 // virtual to get the bid count for a job
 jobSchema.virtual("bidCount").get(function () {
