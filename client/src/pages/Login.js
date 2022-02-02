@@ -1,16 +1,8 @@
 // see SignupForm.js for comments
 import React, { useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { userLogin } from "../utils/API";
 import Auth from "../utils/auth";
-
-import FormControl from "@material-ui/core/FormControl";
-import { TextField } from "@material-ui/core";
-// import Button from "@material-ui/core/Button";
-
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
