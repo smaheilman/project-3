@@ -14,8 +14,8 @@ router.route('/')
     .get(getAllJobs)
     .post(createJob)
 
-//router.route('/:userId')
-    
+router.route('/:userId')
+.post(createJob)
 
 router
     .route('/:jobId')

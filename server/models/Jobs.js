@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 const bidSchema = require('./Bids');
 const commentSchema = require('./Comments');
+const User = require ('./User');
 
 const jobSchema = new Schema(
     {
@@ -12,29 +13,22 @@ const jobSchema = new Schema(
         description: {
             type: String,
             required: true,
-           // validate: {
-           //     minlength: 1,
-           //     maxlength: 200
-           // }
+            // validate: {
+            //     minlength: 1,
+            //     maxlength: 200
+            // }
         },
         bids: [bidSchema],
         postedBy: {
-                type: Schema.Types.ObjectId,
-                ref: 'User'
-            },
-        createdAt: {
-                type: Date,
-                default: Date.now,
-                get: (createdAtVal) => dateFormat(createdAtVal)
+            type: Schema.Types.String,
+            ref: 'user'
         },
-        comments: [commentSchema],
-        username: {
-            type: String,
-            references: {
-                model: 'User',
-                key: 'username'
-            }
-        }
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: (createdAtVal) => dateFormat(createdAtVal)
+        },
+        comments: [commentSchema]
     },
     {
         toJSON: {
@@ -43,14 +37,15 @@ const jobSchema = new Schema(
         },
         id: false
     },
-    
+
+
 )
 
 // virtual to get the bid count for a job
-jobSchema.virtual('bidCount').get(function() {
+jobSchema.virtual('bidCount').get(function () {
     return this.bids.length;
 })
 
-const Job = model('Job', jobSchema);
+const Jobs = model('Jobs', jobSchema);
 
-module.exports = Job;
+module.exports = Jobs;

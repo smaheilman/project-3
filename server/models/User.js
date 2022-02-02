@@ -20,12 +20,12 @@ const userSchema = new Schema(
             required: true
         },
         // job array referencing the job model
-        postedJobs: [
-            {
+        postedJobs: 
+            [{
                 type: Schema.Types.ObjectId,
                 ref: 'Jobs'
-            }
-        ],
+            }]
+        ,
         savedJobs: [
             {
                 type: Schema.Types.ObjectId,
