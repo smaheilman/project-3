@@ -1,7 +1,9 @@
 const { Schema, model } = require("mongoose");
+const mongoose = require('mongoose');
 const dateFormat = require("../utils/dateFormat");
 const bidSchema = require("./Bids");
 const commentSchema = require("./Comments");
+const User = require('./User');
 
 const jobSchema = new Schema(
   {
@@ -41,17 +43,21 @@ const jobSchema = new Schema(
   }
 );
 
-// jobSchema.pre('remove', async function() {
-//   console.log('clearing job ID from savedJobs array in the user model')
-//   await User.updateMany({ savedJobs: this._id }, { $pull: { savedJobs: this._id } }, { multi: true } )
-// })
+jobSchema.pre('findOneAndDelete', function (next) {
+  console.log(this._conditions._id)
+  const ID = this._conditions._id;
+  mongoose.model("User").updateMany({ savedJobs: ID }, { $pull: { savedJobs: ID } })
+  .then(res => console.log("Id deleted"))
+  return next();
+})
 
-// jobSchema.pre('remove', function (next) {
-//   mongoose.model("User").updateOne({ postedJobs: this._id }, { $pull: { postedJobs: this._id } })
-//   .then(res => console.log(res))
+jobSchema.pre('remove', function (next) {
+  const ID = this._conditions._id;
+  mongoose.model("User").updateOne({ postedJobs: ID }, { $pull: { postedJobs: ID } })
+  .then(res => console.log(res))
 
-//   return next();
-// })
+  return next();
+})
 
 // virtual to get the bid count for a job
 jobSchema.virtual("bidCount").get(function () {

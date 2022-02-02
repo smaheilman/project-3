@@ -11,10 +11,6 @@ const bidSchema = new Schema(
             type: Number,
             required: true
         },
-        username: {
-            type: String,
-            required: true
-        },
         createdAt: {
             type: Date,
             default: Date.now,
