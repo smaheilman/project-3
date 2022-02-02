@@ -16,9 +16,9 @@ router.route("/").get(getAllJobs);
 
 router.route("/:userId").post(createJob);
 
-router.route("/:jobId").get(getJobById).put(addComment).put(updateJob).delete(deleteJob);
+router.route("/:jobId").get(getJobById).put(addComment).put(updateJob).delete(deleteJob).post(addBid);;
 
-router.route("/:jobId/bids").post(addBid);
+router.route("/:jobId/bids")
 
 router.route("/:jobId/:commentId").put(updateComment).delete(removeComment);
 

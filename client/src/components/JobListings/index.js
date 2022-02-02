@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getUsers, getLoggedUser, getJobs } from '../../utils/API';
+import { getUsers, getLoggedUser, getJobs, addBid } from '../../utils/API';
 import Auth from '../../utils/auth'
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
@@ -31,6 +31,29 @@ const JobList = (props) => {
     getJobData();
   }, [jobDataLength]);
 
+  const handleBidJob = async () => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+        return false;
+    }
+
+    try {
+        const response = await addBid(jobData);
+        //console.log(jobId)
+        if (!response.ok) {
+            throw new Error('something went wrong!');
+        }
+
+        const updatedJob = await response.json();
+        setJobData(updatedJob);
+
+        alert('Thank you for placing a bid!'); 
+
+    } catch (err) {
+        console.error(err);
+    }
+};
 
   if (!jobDataLength) {
     return <h2>LOADING...</h2>;
@@ -51,13 +74,16 @@ const JobList = (props) => {
         </h2>
         <CardColumns>
           {jobData.map((jobs) => {
-            console.log(jobs.username);
+            //console.log(jobs._id)
+            
             return (
               <Card key={jobs._id} border='dark'>
                 <Card.Body>
-                  <Card.Title>{jobs.title}</Card.Title>
+                  <Card.Title><Link to={`/onejob/${jobs._id}`}> Title: {jobs.title}</Link></Card.Title>
                   <p className='small'>Description: {jobs.description}</p>
                   <p className='small'>User: {jobs.username}</p>
+                  <input type='integer' id="bid" name="bid" value={jobs.bidAmount} placeholder='Place your bid!'></input>
+                  <Button onClick={() => handleBidJob(jobData._Id)}>Submit</Button>
                 </Card.Body>
               </Card>
             );

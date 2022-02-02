@@ -51,7 +51,7 @@ export const getJobs = (jobData) => {
 };
 
 export const getSingleJob = (jobId, jobData) => {
-    return fetch(`/api/job/${jobId}`, {
+    return fetch('/api/jobs/'+ jobId, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ export const getSingleJob = (jobId, jobData) => {
 };
 
 export const deleteJob = (jobId, jobData) => {
-    return fetch(`/api/job/${jobId}`, {
+    return fetch('/api/jobs/' + jobId, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ export const deleteJob = (jobId, jobData) => {
 };
 
 export const createComment =(jobId, jobData) => {
-    return fetch(`api/job/${jobId}`, {
+    return fetch('api/jobs/' + jobId, {
         method: 'PUT',
         headers: {
             'Content-Type' : 'application/json'
@@ -87,5 +87,15 @@ export const getUsers=(userData) => {
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify(userData)
+    }
+}
+
+export const addBid=(jobId, jobData) => {
+    return fetch('api/jobs/' + jobId) , {
+        method: "PUT",
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(jobData)
     }
 }
