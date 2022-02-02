@@ -1,4 +1,3 @@
-const req = require("express/lib/request");
 const res = require("express/lib/response");
 const { User, Jobs } = require("../models");
 const { authMiddleware } = require("../utils/auth");

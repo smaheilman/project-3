@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap");
 * {
   box-sizing: border-box;
   padding: 0;
@@ -139,4 +139,95 @@ main {
   overflow: hidden;
   display: inline-block;
   vertical-align: middle;
+}
+
+/* Login-Form */
+.login-page {
+  margin-top: 22em;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+  font-family: "Poppins", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-indent: 22px;
+  border-radius: 5px;
+}
+
+.form button {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #50bba4;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.form h1 {
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  color: #2a2b38;
+  border-bottom: 2px solid black;
+}
+
+.form button:hover {
+  background: #45a08c;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.form .message a {
+  color: #50bba4;
+  text-decoration: none;
+}
+
+.fontuser {
+  position: relative;
+}
+
+.fontuser i {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  color: gray;
+}
+
+.fontpassword {
+  position: relative;
+}
+
+.fontpassword i {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  color: gray;
 }
