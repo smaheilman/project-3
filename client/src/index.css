@@ -11,6 +11,10 @@ a {
   color: white;
 }
 
+img {
+  max-width: 100%;
+}
+
 body {
   font-size: 18px;
   line-height: 1.8rem;
@@ -120,7 +124,7 @@ main {
 }
 
 .header-image {
-  padding: 20px 0 10px;
+  padding: 20px 0 20px;
   display: block;
   width: 100%;
   text-align: center;

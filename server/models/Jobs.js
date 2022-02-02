@@ -1,36 +1,3 @@
-<<<<<<< HEAD
-const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
-const bidSchema = require('./Bids');
-const commentSchema = require('./Comments');
-const User = require ('./User');
-
-const jobSchema = new Schema(
-    {
-        title: {
-            type: String,
-            required: true,
-        },
-        description: {
-            type: String,
-            required: true,
-            // validate: {
-            //     minlength: 1,
-            //     maxlength: 200
-            // }
-        },
-        bids: [bidSchema],
-        postedBy: {
-            type: Schema.Types.String,
-            ref: 'user'
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now,
-            get: (createdAtVal) => dateFormat(createdAtVal)
-        },
-        comments: [commentSchema]
-=======
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
 const bidSchema = require("./Bids");
@@ -41,7 +8,6 @@ const jobSchema = new Schema(
     title: {
       type: String,
       required: true,
->>>>>>> b10e935de5ef7b25bebb6a6ccb895c81f99bbe97
     },
     description: {
       type: String,
@@ -51,20 +17,6 @@ const jobSchema = new Schema(
       //     maxlength: 200
       // }
     },
-<<<<<<< HEAD
-
-
-)
-
-// virtual to get the bid count for a job
-jobSchema.virtual('bidCount').get(function () {
-    return this.bids.length;
-})
-
-const Jobs = model('Jobs', jobSchema);
-
-module.exports = Jobs;
-=======
     bids: [bidSchema],
     postedBy: {
       _id: {
@@ -97,4 +49,3 @@ jobSchema.virtual("bidCount").get(function () {
 const Job = model("Job", jobSchema);
 
 module.exports = Job;
->>>>>>> b10e935de5ef7b25bebb6a6ccb895c81f99bbe97
