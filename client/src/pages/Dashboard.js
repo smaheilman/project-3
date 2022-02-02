@@ -53,7 +53,11 @@ const Dashboard = (props) => {
           {/* { Viewing {userParam ? `${user.username}'s` : 'your'} profile.} */}
         </h2>
         <JobForm/>
-        <CompletedProjects/>
+        <CompletedProjects
+          username={userData.username}
+          savedJobs={userData.savedJobs}
+          savedJobCount={userData.savedJobCount}
+        />
       </div>
     </div>
     </main>
