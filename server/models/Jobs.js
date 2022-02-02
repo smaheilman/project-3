@@ -41,6 +41,18 @@ const jobSchema = new Schema(
   }
 );
 
+// jobSchema.pre('remove', async function() {
+//   console.log('clearing job ID from savedJobs array in the user model')
+//   await User.updateMany({ savedJobs: this._id }, { $pull: { savedJobs: this._id } }, { multi: true } )
+// })
+
+// jobSchema.pre('remove', function (next) {
+//   mongoose.model("User").updateOne({ postedJobs: this._id }, { $pull: { postedJobs: this._id } })
+//   .then(res => console.log(res))
+
+//   return next();
+// })
+
 // virtual to get the bid count for a job
 jobSchema.virtual("bidCount").get(function () {
   return this.bids.length;
