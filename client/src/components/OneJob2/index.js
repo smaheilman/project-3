@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { getSingleJob, deleteJob } from "../../utils/API";
-import { Button} from 'react-bootstrap';
+import { getSingleJob, addBid } from "../../utils/API";
+import {  Button} from 'react-bootstrap';
 import Auth from "../../utils/auth";
 
-const OneJob = () => {
+const OneJob2 = () => {
     const jobId = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
     ];
+    console.log(jobId)
 
     const [jobData, setJobData] = useState([]);
 
@@ -33,8 +34,7 @@ const OneJob = () => {
         getJobData();
     }, [jobId]);
 
-
-    const handleDeleteJob = async () => {
+    const handleSubmitBid = async () => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
@@ -42,7 +42,7 @@ const OneJob = () => {
         }
 
         try {
-            const response = await deleteJob(jobId);
+            const response = await addBid(jobId);
             console.log(jobId)
             if (!response.ok) {
                 throw new Error('something went wrong!');
@@ -51,8 +51,7 @@ const OneJob = () => {
             const updatedJob = await response.json();
             setJobData(updatedJob);
 
-            alert('Record has been successfully deleted'); 
-            window.location.replace("/profile");
+            alert('Thank you for placing a bid!');
 
         } catch (err) {
             console.error(err);
@@ -63,18 +62,19 @@ const OneJob = () => {
         return <h2>LOADING...</h2>;
     }
 
-    
+
+
+
     return (
         <main>
             <div>
                 <h1>{jobData.title}</h1>
                 <p>{jobData.description}</p>
-                <Button className='btn-block btn-danger' onClick={() => handleDeleteJob(jobData._Id)}>
-                    Delete this Job!
-                </Button>
+                <input type="number" id="bid" name="bid" value={jobData.bids.bidAmount} placeholder='Place your bid!'></input>
+                <Button onClick={() => handleSubmitBid(jobData._Id)}>Submit</Button>
             </div>
         </main>
     );
 }
 
-export default OneJob;
+export default OneJob2;

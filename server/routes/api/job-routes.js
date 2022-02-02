@@ -12,9 +12,9 @@ const {
   removeBid,
 } = require("../../controllers/job-controller");
 
-router.route("/").get(getAllJobs);
+router.route("/").get(getAllJobs).post(createJob);
 
-router.route("/:userId").post(createJob);
+router.route("/:userId")
 
 router.route("/:jobId").get(getJobById).put(addComment).put(updateJob).delete(deleteJob).post(addBid);;
 

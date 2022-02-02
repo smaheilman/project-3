@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 //import { Redirect, useParams } from 'react-router-dom';
 import Auth from '../utils/auth';
-import { getLoggedUser, getSingleJob} from '../utils/API';
+import { getLoggedUser } from '../utils/API';
 import JobForm from '../components/JobForm';
 //import { application } from 'express';
 import {Container, CardColumns, Card} from 'react-bootstrap';

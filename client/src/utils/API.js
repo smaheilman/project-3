@@ -31,7 +31,7 @@ export const userLogin = (userData) => {
 };
 
 export const createJob = (jobData) => {
-    return fetch('/api/jobs/', {
+    return fetch('/api/jobs/' , {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

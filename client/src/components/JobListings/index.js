@@ -79,10 +79,10 @@ const JobList = (props) => {
             return (
               <Card key={jobs._id} border='dark'>
                 <Card.Body>
-                  <Card.Title><Link to={`/onejob/${jobs._id}`}> Title: {jobs.title}</Link></Card.Title>
+                  <Card.Title><Link to={`/onejob2/${jobs._id}`}> Title: {jobs.title}</Link></Card.Title>
                   <p className='small'>Description: {jobs.description}</p>
                   <p className='small'>User: {jobs.username}</p>
-                  <input type='integer' id="bid" name="bid" value={jobs.bidAmount} placeholder='Place your bid!'></input>
+                  <input type= "number" id="bid" name="bid" value={jobs.bidAmount} placeholder='Place your bid!'></input>
                   <Button onClick={() => handleBidJob(jobData._Id)}>Submit</Button>
                 </Card.Body>
               </Card>
