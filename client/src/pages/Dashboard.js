@@ -5,6 +5,7 @@ import { getLoggedUser, getSingleJob} from '../utils/API';
 import JobForm from '../components/JobForm';
 //import { application } from 'express';
 import {Container, CardColumns, Card} from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 const Dashboard = (props) => {
 
@@ -61,11 +62,11 @@ const Dashboard = (props) => {
         </h2>
         <CardColumns>
           {userData.postedJobs.map((job) => {
-            console.log(job);
+            //console.log(job._id);
             return (
-              <Card key={job.job_Id} border='dark'>
+              <Card key={job._Id} border='dark'>
                 <Card.Body>
-                  <Card.Title>Title: {job.title}</Card.Title>
+                  <Card.Title><Link to={`/onejob/${job._id}`}> Title: {job.title}</Link></Card.Title>
                   <Card.Text>Description: {job.description}</Card.Text>
                 </Card.Body>
               </Card>

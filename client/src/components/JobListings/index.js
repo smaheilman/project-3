@@ -31,7 +31,6 @@ const JobList = (props) => {
     getJobData();
   }, [jobDataLength]);
 
-
   if (!jobDataLength) {
     return <h2>LOADING...</h2>;
   }
@@ -51,11 +50,12 @@ const JobList = (props) => {
         </h2>
         <CardColumns>
           {jobData.map((jobs) => {
-            console.log(jobs.username);
+            console.log(jobs._id)
+            
             return (
               <Card key={jobs._id} border='dark'>
                 <Card.Body>
-                  <Card.Title>{jobs.title}</Card.Title>
+                  <Card.Title><Link to={`/onejob/${jobs._id}`}> Title: {jobs.title}</Link></Card.Title>
                   <p className='small'>Description: {jobs.description}</p>
                   <p className='small'>User: {jobs.username}</p>
                 </Card.Body>

@@ -12,12 +12,7 @@ const {
   removeBid,
 } = require("../../controllers/job-controller");
 
-<<<<<<< HEAD
-router.route('/:userId')
-.post(createJob)
-=======
 router.route("/").get(getAllJobs);
->>>>>>> b10e935de5ef7b25bebb6a6ccb895c81f99bbe97
 
 router.route("/:userId").post(createJob);
 

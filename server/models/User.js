@@ -3,43 +3,11 @@ const bcrypt = require("bcrypt");
 
 // schema for creating the user model
 const userSchema = new Schema(
-<<<<<<< HEAD
-    {
-        username: {
-            type: String,
-            required: true,
-            unique: true
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            match: [/.+@.+\..+/, 'Must use a valid email address']
-        },
-        password: {
-            type: String,
-            required: true
-        },
-        // job array referencing the job model
-        postedJobs: 
-            [{
-                type: Schema.Types.ObjectId,
-                ref: 'Jobs'
-            }]
-        ,
-        savedJobs: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Jobs'
-            }
-        ]
-=======
   {
     username: {
       type: String,
       required: true,
       unique: true,
->>>>>>> b10e935de5ef7b25bebb6a6ccb895c81f99bbe97
     },
     email: {
       type: String,
@@ -55,13 +23,13 @@ const userSchema = new Schema(
     postedJobs: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Jobs",
+        ref: "Job",
       },
     ],
     savedJobs: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Jobs",
+        ref: "Job",
       },
     ],
   },
