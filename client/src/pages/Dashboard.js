@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 //import { Redirect, useParams } from 'react-router-dom';
+<<<<<<< HEAD
 import Auth from '../utils/auth';
 import { getLoggedUser } from '../utils/API';
 import JobForm from '../components/JobForm';
+=======
+import Auth from "../utils/auth";
+import { getLoggedUser } from "../utils/API";
+import JobForm from "../components/JobForm";
+>>>>>>> 50a311cc2c6098b6ca47ac3aaba45c1e7de3e090
 //import { application } from 'express';
-import {Container, CardColumns, Card} from 'react-bootstrap';
+import { Container, CardColumns, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CompletedProjects from '../components/CompletedProjects';
+import CompletedProjects from "../components/CompletedProjects";
 
 const Dashboard = (props) => {
-
   const [userData, setUserData] = useState({});
 
   // use this to determine if `useEffect()` hook needs to run again
@@ -27,7 +32,7 @@ const Dashboard = (props) => {
         const response = await getLoggedUser(token);
 
         if (!response.ok) {
-          throw new Error('something went wrong!');
+          throw new Error("something went wrong!");
         }
 
         const user = await response.json();
@@ -45,38 +50,37 @@ const Dashboard = (props) => {
     return <h2>...Loading</h2>;
   }
 
-
   return (
     <main>
-    <div>
-      <div className="flex-row mb-3">
-        <h2 className="bg-dark text-secondary p-3 display-inline-block">
-          Hello {userData.username}
-        </h2>
-        <JobForm/>
+      <div>
+        <div className="flex-row mb-3">
+          <h2 className="bg-dark text-secondary p-3 display-inline-block">Hello {userData.username}</h2>
+          <JobForm />
+        </div>
+        <Container>
+          <h2>
+            {userData.postedJobs.length
+              ? `Viewing ${userData.postedJobs.length}  ${userData.postedJobs.length === 1 ? "job" : "jobs"}:`
+              : "You have no jobs!"}
+          </h2>
+          <CardColumns>
+            {userData.postedJobs.map((job) => {
+              //console.log(job._id);
+              return (
+                <Card key={job._Id} border="dark">
+                  <Card.Body>
+                    <Card.Title>
+                      <Link to={`/onejob/${job._id}`}> Title: {job.title}</Link>
+                    </Card.Title>
+                    <Card.Text>Description: {job.description}</Card.Text>
+                  </Card.Body>
+                </Card>
+              );
+            })}
+          </CardColumns>
+        </Container>
+        <CompletedProjects />
       </div>
-      <Container>
-        <h2>
-          {userData.postedJobs.length
-            ? `Viewing ${userData.postedJobs.length}  ${userData.postedJobs.length === 1 ? 'job' : 'jobs'}:`
-            : 'You have no jobs!'}
-        </h2>
-        <CardColumns>
-          {userData.postedJobs.map((job) => {
-            //console.log(job._id);
-            return (
-              <Card key={job._Id} border='dark'>
-                <Card.Body>
-                  <Card.Title><Link to={`/onejob/${job._id}`}> Title: {job.title}</Link></Card.Title>
-                  <Card.Text>Description: {job.description}</Card.Text>
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns>
-      </Container>
-      <CompletedProjects/>
-    </div>
     </main>
   );
 };
