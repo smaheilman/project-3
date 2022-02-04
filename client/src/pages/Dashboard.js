@@ -73,7 +73,11 @@ const Dashboard = (props) => {
             })}
           </CardColumns>
         </Container>
-        <CompletedProjects />
+        <CompletedProjects 
+            username={userData.username}
+            savedJobs={userData.savedJobs}
+            savedJobCount={userData.savedJobCount}
+        />
       </div>
     </main>
   );

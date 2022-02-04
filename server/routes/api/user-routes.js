@@ -4,7 +4,8 @@ const {
   getMe,
   login,
   getSingleUser,
-  getAllUsers
+  getAllUsers,
+  saveJob
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -14,9 +15,7 @@ router.route('/')
     .get(getAllUsers)
 
 // put authMiddleware anywhere we need to send a token for verification of user
-router.route('/').post(createUser).put(authMiddleware);
-
-router.route('/all').get(getAllUsers);
+router.route('/').post(createUser).put(authMiddleware, saveJob);
 
 router.route('/login').post(login);
 

@@ -5,7 +5,7 @@ import {Form, Button, Alert} from 'react-bootstrap';
 
 const JobForm = () => {
   // set initial form state
-  const [jobFormData, setJobFormData] = useState({ title: '', description: ''});
+  const [jobFormData, setJobFormData] = useState({ title: '', description: '', username: ''});
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -18,6 +18,9 @@ const JobForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    const token = Auth.getProfile();
+    jobFormData.username = token.data.username;
+    console.log(jobFormData);
 
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
@@ -43,7 +46,8 @@ const JobForm = () => {
 
     setJobFormData({
       title: '',
-      description: ''
+      description: '',
+      username: ''
     });
   };
 
