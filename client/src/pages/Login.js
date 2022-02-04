@@ -1,6 +1,6 @@
 // see SignupForm.js for comments
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { userLogin } from "../utils/API";
 import Auth from "../utils/auth";
 
@@ -28,14 +28,14 @@ const LoginForm = () => {
       const response = await userLogin(userFormData);
 
       if (!response.ok) {
-        throw new Error("something went wrong!");
+        console.log(response);
+        throw new Error(response.message);
       }
 
       const { token, user } = await response.json();
       console.log(user);
       Auth.login(token);
     } catch (err) {
-      console.error(err);
       setShowAlert(true);
     }
 
@@ -50,12 +50,11 @@ const LoginForm = () => {
     <main>
       <div className="login-page">
         <Form noValidate validated={validated} onSubmit={handleFormSubmit} className="form">
-          {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant="danger">
-            Something went wrong with your login credentials!
-          </Alert> */}
           <h1>Sign in</h1>
+          <Alert show={showAlert} className="login-alert">
+            Invalid email or password
+          </Alert>
           <Form.Group className="fontuser">
-            {/* <Form.Label htmlFor="email">Email</Form.Label> */}
             <Form.Control
               type="text"
               placeholder="Your email"
@@ -64,12 +63,10 @@ const LoginForm = () => {
               value={userFormData.email}
               required
             />
-            <i class="fas fa-user"></i>
-            {/* <Form.Control.Feedback type="invalid">Email is required!</Form.Control.Feedback> */}
+            <i className="fas fa-user"></i>
           </Form.Group>
 
           <Form.Group className="fontpassword">
-            {/* <Form.Label htmlFor="password">Password</Form.Label> */}
             <Form.Control
               type="password"
               placeholder="Your password"
@@ -78,11 +75,10 @@ const LoginForm = () => {
               value={userFormData.password}
               required
             />
-            {/* <Form.Control.Feedback type="invalid">Password is required!</Form.Control.Feedback> */}
-            <i class="fas fa-lock"></i>
+            <i className="fas fa-lock"></i>
           </Form.Group>
           <Button disabled={!(userFormData.email && userFormData.password)} type="submit" variant="success">
-            Login <i class="fa-solid fa-paper-plane-top"></i>
+            Login <i className="fa-solid fa-paper-plane-top"></i>
           </Button>
           <p className="message">
             Not registered? <a href="/signup">Create an account</a>
