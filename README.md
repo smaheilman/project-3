@@ -9,3 +9,6 @@ React, MongoDb, Rest APIs, CSS, javaScript, bootstrap
 ## Link to deployed
 * https://smaheilman.github.io/project-3/
 * Heroku: https://imperium10.herokuapp.com/
+
+## Presentation Link
+https://docs.google.com/presentation/d/1Bn4nuo5x9zHiTyMMwu27Sn_Jd6aOtWd9FLc2SQmYW6s/edit?usp=sharing
