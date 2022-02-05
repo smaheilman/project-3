@@ -7,5 +7,5 @@ An app desinged to help small contractors find business, as well as clients with
 React, MongoDb, Rest APIs, CSS, javaScript, bootstrap
 
 ## Link to deployed
-https://smaheilman.github.io/project-3/
-Heroku: https://imperium10.herokuapp.com/
+* https://smaheilman.github.io/project-3/
+* Heroku: https://imperium10.herokuapp.com/
