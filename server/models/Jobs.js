@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dateFormat = require("../utils/dateFormat");
 const bidSchema = require("./Bids");
 const commentSchema = require("./Comments");
+const User = require('./User');
 
 const jobSchema = new Schema(
   {
@@ -24,7 +25,9 @@ const jobSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: "User",
       },
-      username: { type: String, ref: "User" },
+    },
+    username: {
+      type: String
     },
     createdAt: {
       type: Date,

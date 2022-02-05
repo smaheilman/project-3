@@ -11,7 +11,6 @@ import OneJob from "./components/OneJob";
 import OneJob2 from "./components/OneJob2";
 
 function App() {
-
   return (
     <Router>
       <NavBar></NavBar>
