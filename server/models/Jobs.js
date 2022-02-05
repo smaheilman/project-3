@@ -25,7 +25,9 @@ const jobSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: "User",
       },
-      username: { type: String, ref: "User" },
+    },
+    username: {
+      type: String
     },
     createdAt: {
       type: Date,

@@ -47,7 +47,7 @@ const JobForm = () => {
     setJobFormData({
       title: '',
       description: '',
-      username: token.data.username
+      username: ''
     });
   };
 
